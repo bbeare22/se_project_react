@@ -1,0 +1,31 @@
+.cards__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  gap: 21px;
+  justify-content: flex-start;
+}
+
+.cards__text {
+  font-family: "Cabinet-Grotesk", arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 40px 0 34px;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .cards__list {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards__list {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

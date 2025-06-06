@@ -1,0 +1,119 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0000004d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal_opened {
+  visibility: visible;
+}
+
+.modal__title {
+  margin: 0 0 24px 0;
+  text-align: left;
+}
+
+.modal__close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  background: transparent url("../../assets/close.svg") center no-repeat;
+  border: none;
+  width: 20px;
+  height: 20px;
+  transition: opacity linear 0.5s;
+}
+
+.modal__close:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.modal__content {
+  background-color: #fff;
+  position: relative;
+  padding: 28px 28px 36px;
+  max-width: 496px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 20px;
+  font-family: "Cabinet-Grotesk", arial, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 24px;
+}
+
+.modal__input {
+  display: block;
+  width: 100%;
+}
+
+.modal__radio-buttons {
+  border: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal__submit {
+  font-family: "Cabinet-Grotesk", arial, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  width: 124px;
+  height: 36px;
+  padding: 0;
+  border-radius: 4px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s linear;
+}
+
+.modal__submit_disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: default;
+}
+
+.modal__submit:hover:not(.modal__submit_disabled) {
+  background-color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .modal__content {
+    max-width: 100%;
+    padding: 20px 20px 30px;
+    border-radius: 16px;
+  }
+
+  .modal__submit {
+    width: 100%;
+  }
+
+  .modal__radio-buttons {
+    gap: 8px;
+  }
+}
