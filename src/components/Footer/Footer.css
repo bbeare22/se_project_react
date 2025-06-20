@@ -6,8 +6,9 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  padding: 0 40px 24px;
+  padding: 0 0 24px;
   flex-wrap: wrap;
+  flex-shrink: 0;
   gap: 12px;
 }
 
