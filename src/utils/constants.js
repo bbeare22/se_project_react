@@ -111,12 +111,6 @@ export const defaultClothingItems = [
     weather: "cold",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",
   },
-  // {
-  // _id: 6,
-  //name: "Tank-top",
-  //weather: "hot",
-  //link: "https://i5.walmartimages.com/asr/ded91208-31b4-4fad-9599-07ac47702678.77ac591e5922e07dd02a133e093f636e.jpeg",
-  //},
 ];
 
 export const coordinates = {

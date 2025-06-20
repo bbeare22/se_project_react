@@ -11,7 +11,7 @@ function ConfirmDeleteModal({ isOpen, onConfirm, onCancel }) {
 
   return (
     <ModalWithForm
-      title="" // no visible title
+      title=""
       buttonText="Yes, delete item"
       isOpen={isOpen}
       onClose={onCancel}
@@ -20,7 +20,7 @@ function ConfirmDeleteModal({ isOpen, onConfirm, onCancel }) {
         onConfirm();
       }}
       isDeleteButton={true}
-      cancelButton={cancelBtn} // pass cancel button as prop
+      cancelButton={cancelBtn}
     >
       <p className="modal__warning-message">
         Are you sure you want to delete this item?
