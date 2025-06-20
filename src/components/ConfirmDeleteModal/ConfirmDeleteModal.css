@@ -1,0 +1,82 @@
+.modal__warning-message {
+  margin: 15px 0 0 0;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000;
+  text-align: center;
+}
+
+.modal__irreversible-text {
+  margin: 0;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000;
+  text-align: center;
+}
+
+.modal__submit {
+  background: none;
+  border: none;
+  color: #ff4d4d;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 12px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 24px auto 16px;
+  transition: opacity 0.3s ease;
+  display: block;
+  text-align: center;
+}
+
+.modal__submit:hover {
+  opacity: 0.7;
+}
+
+.modal__submit:focus {
+  outline: 2px solid #ff4d00;
+  outline-offset: 2px;
+}
+
+.modal__cancel-button-wrapper {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.modal__cancel-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.modal__cancel-button:hover {
+  color: blue;
+  opacity: 0.7;
+}
+@media (max-width: 700px) {
+  .modal__content_confirm-delete {
+    width: 90vw;
+    height: auto;
+    border-radius: 16px;
+    padding: 20px 24px 28px;
+  }
+
+  .modal__warning-message,
+  .modal__irreversible-text,
+  .modal__submit,
+  .modal__cancel-button {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .modal__warning-message,
+  .modal__irreversible-text,
+  .modal__submit,
+  .modal__cancel-button {
+    font-size: 20px;
+  }
+}

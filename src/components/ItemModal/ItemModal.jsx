@@ -1,6 +1,6 @@
 import "./ItemModal.css";
 
-function ItemModal({ activeModal, onClose, card }) {
+function ItemModal({ activeModal, onClose, card, onDeleteClick }) {
   if (!card) return null;
 
   return (
@@ -19,9 +19,18 @@ function ItemModal({ activeModal, onClose, card }) {
         ></button>
         <img src={card.link} alt={card.name} className="modal__image" />
         <div className="modal__footer">
-          <h2 id="modal-caption" className="modal__caption">
-            {card.name}
-          </h2>
+          <div className="modal__footer-row">
+            <h2 id="modal-caption" className="modal__caption">
+              {card.name}
+            </h2>
+            <button
+              className="modal__delete-button"
+              onClick={() => onDeleteClick(card)}
+              aria-label="Delete item"
+            >
+              Delete item
+            </button>
+          </div>
           <p className="modal__weather">Weather: {card.weather}</p>
         </div>
       </div>

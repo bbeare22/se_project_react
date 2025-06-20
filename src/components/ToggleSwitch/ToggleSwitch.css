@@ -1,0 +1,70 @@
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 28px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  user-select: none;
+}
+
+.switch__box {
+  opacity: 0;
+  width: 56px;
+  height: 28px;
+  margin: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+
+.switch__track {
+  position: relative;
+  background-color: #7e7e7e;
+  border-radius: 20px;
+  width: 56px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  box-sizing: border-box;
+  color: #f3f3f3;
+}
+
+.switch__label {
+  color: #fff;
+  pointer-events: none;
+  user-select: none;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 4;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+}
+
+.switch__active {
+  color: #fff;
+  opacity: 1;
+}
+
+.switch__slider {
+  position: absolute;
+  top: 2px;
+  width: 24px;
+  height: 24px;
+  background-color: #000;
+  border-radius: 50%;
+  transition: left 0.3s ease;
+  z-index: 2;
+}
+
+.switch__slider-F {
+  left: 2px;
+}
+
+.switch__slider-C {
+  left: 30px;
+}

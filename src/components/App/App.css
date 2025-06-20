@@ -1,14 +1,19 @@
 .page {
+  display: flex;
+  flex-direction: column;
   background-color: #f3f3f3;
   min-height: 100vh;
   font-family: "Cabinet-Grotesk", Arial, sans-serif;
   color: #222;
+  padding: 0 40px 0;
 }
 
 .page__content {
-  max-width: 1360px;
-  margin: 0 auto;
-  padding: 0 20px;
+  flex: 1;
+  padding: 0;
+  margin: 0;
+  max-width: none;
+  width: 100%;
   box-sizing: border-box;
 }
 

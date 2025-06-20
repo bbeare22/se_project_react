@@ -1,10 +1,15 @@
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
+import { useContext } from "react";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function Main({ weatherData, handleCardClick, clothingItems }) {
-  const temperature = weatherData?.temp?.F ?? "--";
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
+  const temperatureValue = weatherData?.temp?.[currentTemperatureUnit] ?? "--";
   const weatherType = weatherData.type?.toLowerCase() ?? "";
+
   const matchingItems = clothingItems.filter(
     (item) => item.weather.toLowerCase() === weatherType
   );
@@ -14,7 +19,8 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
       <WeatherCard weatherData={weatherData} />
       <section className="cards" aria-live="polite">
         <p className="cards__text">
-          Today is {temperature} &deg;F / You may want to wear:
+          Today is {temperatureValue} &deg;{currentTemperatureUnit} / You may
+          want to wear:
         </p>
         {matchingItems.length > 0 ? (
           <ul className="cards__list">

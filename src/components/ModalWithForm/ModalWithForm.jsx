@@ -1,3 +1,4 @@
+import React from "react";
 import "./ModalWithForm.css";
 
 function ModalWithForm({
@@ -8,6 +9,8 @@ function ModalWithForm({
   onClose,
   onSubmit,
   isValid,
+  cancelButton, // new prop
+  isDeleteButton,
 }) {
   return (
     <div
@@ -17,9 +20,11 @@ function ModalWithForm({
       aria-labelledby="modal-title"
     >
       <div className="modal__content">
-        <h2 id="modal-title" className="modal__title">
-          {title}
-        </h2>
+        {title && (
+          <h2 id="modal-title" className="modal__title">
+            {title}
+          </h2>
+        )}
         <button
           onClick={onClose}
           type="button"
@@ -32,11 +37,14 @@ function ModalWithForm({
             type="submit"
             className={`modal__submit ${
               !isValid ? "modal__submit_disabled" : ""
-            }`}
+            } ${isDeleteButton ? "modal__submit_delete" : ""}`}
             disabled={!isValid}
           >
             {buttonText}
           </button>
+          {cancelButton && (
+            <div className="modal__cancel-button-wrapper">{cancelButton}</div>
+          )}
         </form>
       </div>
     </div>

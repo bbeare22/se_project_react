@@ -46,7 +46,7 @@
   width: 100%;
   box-sizing: border-box;
   border-radius: 20px;
-  font-family: "Cabinet-Grotesk", arial, sans-serif;
+  font-family: "Cabinet-Grotesk", Arial, sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
@@ -92,13 +92,19 @@
   transition: background-color 0.3s linear;
 }
 
+.modal__submit_delete {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+}
+
 .modal__submit_disabled {
   background-color: rgba(0, 0, 0, 0.3);
   cursor: default;
 }
 
-.modal__submit:hover:not(.modal__submit_disabled) {
-  background-color: rgba(0, 0, 0, 0.6);
+.modal__submit_delete:hover:not(.modal__submit_disabled) {
+  background-color: #e04343;
   cursor: pointer;
 }
 
