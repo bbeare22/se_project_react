@@ -1,11 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import {
-  coordinates,
-  APIkey,
-  defaultClothingItems,
-} from "../../utils/constants";
+import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -16,6 +12,11 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import ConfirmDeleteModal from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import { filterWeatherData, getWeather } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import {
+  fetchClothingItems,
+  addClothingItem,
+  deleteClothingItem,
+} from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -29,7 +30,7 @@ function App() {
     link: "",
     weather: "",
   });
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [weatherType, setWeatherType] = useState("");
@@ -65,9 +66,15 @@ function App() {
     setIsConfirmDeleteOpen(false);
   };
 
-  const handleAddItemSubmit = (item) => {
-    setClothingItems([item, ...clothingItems]);
-    closeActiveModal();
+  const handleAddItemSubmit = ({ name, link, weather }) => {
+    addClothingItem({ name, link, weather })
+      .then((newItem) => {
+        setClothingItems((prevItems) => [newItem, ...prevItems]);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error("Failed to add item:", err);
+      });
   };
 
   const openConfirmDeleteModal = (card) => {
@@ -81,23 +88,17 @@ function App() {
   };
 
   const handleDeleteCard = () => {
-    setClothingItems((items) =>
-      items.filter((item) => item._id !== cardToDelete._id)
-    );
-    closeConfirmDeleteModal();
-    closeActiveModal();
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newGarment = {
-      _id: Date.now().toString(),
-      name,
-      link: imageUrl,
-      weather: weatherType.toLowerCase(),
-    };
-    setClothingItems((prevItems) => [newGarment, ...prevItems]);
-    closeActiveModal();
+    deleteClothingItem(cardToDelete._id)
+      .then(() => {
+        setClothingItems((items) =>
+          items.filter((item) => item._id !== cardToDelete._id)
+        );
+        closeConfirmDeleteModal();
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error("Failed to delete item:", err);
+      });
   };
 
   useEffect(() => {
@@ -110,6 +111,14 @@ function App() {
       .catch((err) => {
         console.error(err);
         setError("Failed to fetch weather data.");
+      });
+
+    fetchClothingItems()
+      .then((items) => {
+        setClothingItems(items);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch items:", err);
       });
   }, []);
 

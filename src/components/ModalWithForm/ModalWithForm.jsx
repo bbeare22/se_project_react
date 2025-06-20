@@ -9,8 +9,9 @@ function ModalWithForm({
   onClose,
   onSubmit,
   isValid,
-  cancelButton, // new prop
+  cancelButton,
   isDeleteButton,
+  submitButtonClass = "",
 }) {
   return (
     <div
@@ -37,7 +38,9 @@ function ModalWithForm({
             type="submit"
             className={`modal__submit ${
               !isValid ? "modal__submit_disabled" : ""
-            } ${isDeleteButton ? "modal__submit_delete" : ""}`}
+            } ${
+              isDeleteButton ? "modal__submit_delete" : ""
+            } ${submitButtonClass}`}
             disabled={!isValid}
           >
             {buttonText}
