@@ -20,6 +20,7 @@ function ConfirmDeleteModal({ isOpen, onConfirm, onCancel }) {
         onConfirm();
       }}
       isDeleteButton={true}
+      isValid={true}
       cancelButton={cancelBtn}
     >
       <p className="modal__warning-message">

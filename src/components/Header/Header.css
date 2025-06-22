@@ -53,12 +53,20 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
+}
+
+.header__user-container:hover .header__username {
+  color: #000;
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
 }
 
 .header__username {
   margin: 0;
   color: #333;
   user-select: none;
+  text-decoration: none;
 }
 
 .header__avatar {

@@ -5,3 +5,25 @@
   padding: 0;
   gap: 56px;
 }
+
+.profile__close-button {
+  background: none;
+  border: none;
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  line-height: 1;
+  padding: 0;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.profile__close-button:hover,
+.profile__close-button:focus {
+  color: #ff4d4d;
+  outline: none;
+}
