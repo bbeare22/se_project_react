@@ -31,14 +31,10 @@ function App() {
     weather: "",
   });
   const [clothingItems, setClothingItems] = useState([]);
-  const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [weatherType, setWeatherType] = useState("");
   const [error, setError] = useState(null);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
-  const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
-  const [cardToDelete, setCardToDelete] = useState(null);
+  const [modalContextData, setModalContextData] = useState(null);
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit((prev) => (prev === "F" ? "C" : "F"));
@@ -50,20 +46,13 @@ function App() {
   }, []);
 
   const handleAddClick = () => {
-    const capitalizedWeather = weatherData.type
-      ? weatherData.type.charAt(0).toUpperCase() + weatherData.type.slice(1)
-      : "";
-    setWeatherType(capitalizedWeather);
     setActiveModal("add-garment");
   };
 
   const closeActiveModal = () => {
     setActiveModal("");
-    setName("");
-    setImageUrl("");
-    setWeatherType("");
-    setCardToDelete(null);
-    setIsConfirmDeleteOpen(false);
+    setSelectedCard({ name: "", link: "", weather: "" });
+    setModalContextData(null);
   };
 
   const handleAddItemSubmit = ({ name, link, weather }) => {
@@ -78,22 +67,16 @@ function App() {
   };
 
   const openConfirmDeleteModal = (card) => {
-    setCardToDelete(card);
-    setIsConfirmDeleteOpen(true);
-  };
-
-  const closeConfirmDeleteModal = () => {
-    setCardToDelete(null);
-    setIsConfirmDeleteOpen(false);
+    setModalContextData(card);
+    setActiveModal("confirm-delete");
   };
 
   const handleDeleteCard = () => {
-    deleteClothingItem(cardToDelete._id)
+    deleteClothingItem(modalContextData._id)
       .then(() => {
         setClothingItems((items) =>
-          items.filter((item) => item._id !== cardToDelete._id)
+          items.filter((item) => item._id !== modalContextData._id)
         );
-        closeConfirmDeleteModal();
         closeActiveModal();
       })
       .catch((err) => {
@@ -112,7 +95,9 @@ function App() {
         console.error(err);
         setError("Failed to fetch weather data.");
       });
+  }, []);
 
+  useEffect(() => {
     fetchClothingItems()
       .then((items) => {
         setClothingItems(items);
@@ -173,9 +158,9 @@ function App() {
         />
 
         <ConfirmDeleteModal
-          isOpen={isConfirmDeleteOpen}
+          isOpen={activeModal === "confirm-delete"}
           onConfirm={handleDeleteCard}
-          onCancel={closeConfirmDeleteModal}
+          onCancel={closeActiveModal}
         />
       </CurrentTemperatureUnitContext.Provider>
     </BrowserRouter>

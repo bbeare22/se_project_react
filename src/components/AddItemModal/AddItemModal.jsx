@@ -4,13 +4,13 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 function AddItemModal({ isOpen, onCloseModal, onAddItem }) {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
-  const [weather, setWeather] = useState("hot");
+  const [weather, setWeather] = useState("");
 
   useEffect(() => {
     if (isOpen) {
       setName("");
       setLink("");
-      setWeather("hot");
+      setWeather("");
     }
   }, [isOpen]);
 
