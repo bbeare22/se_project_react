@@ -10,7 +10,7 @@ function ItemModal({ activeModal, onClose, card, onDeleteClick }) {
       aria-modal="true"
       aria-labelledby="modal-caption"
     >
-      <div className="modal__content modal__content_type_image">
+      <div className="modal__content_type_image">
         <button
           onClick={onClose}
           type="button"

@@ -1,11 +1,6 @@
-const baseUrl = "http://localhost:3001";
+import { checkResponse } from "./checkResponse";
 
-function checkResponse(res) {
-  if (!res.ok) {
-    throw new Error(`Error: ${res.status}`);
-  }
-  return res.json();
-}
+const baseUrl = "http://localhost:3001";
 
 export const fetchClothingItems = () => {
   return fetch(`${baseUrl}/items`).then(checkResponse);
@@ -24,10 +19,5 @@ export const addClothingItem = ({ name, link, weather }) => {
 export const deleteClothingItem = (id) => {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
-  }).then((res) => {
-    if (!res.ok) {
-      throw new Error(`Error: ${res.status}`);
-    }
-    return res;
-  });
+  }).then(checkResponse);
 };

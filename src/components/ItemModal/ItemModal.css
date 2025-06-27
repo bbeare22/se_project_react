@@ -48,15 +48,18 @@
 
 .modal__weather {
   margin: 0;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
 }
 
 .modal__delete-button {
   background: none;
   border: none;
   color: #ff4d4d;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
   cursor: pointer;
   padding: 0;
   transition: opacity 0.3s ease;
