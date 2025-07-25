@@ -33,6 +33,7 @@ function AddItemModal({ isOpen, onCloseModal, onAddItem }) {
         Name
         <input
           type="text"
+          placeholder="Name"
           className="modal__input"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -44,6 +45,7 @@ function AddItemModal({ isOpen, onCloseModal, onAddItem }) {
         Image URL
         <input
           type="url"
+          placeholder="Image URL"
           className="modal__input"
           value={link}
           onChange={(e) => setLink(e.target.value)}

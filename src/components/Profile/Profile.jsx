@@ -3,7 +3,14 @@ import "./Profile.css";
 import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 
-function Profile({ clothingItems, handleAddClick, handleCardClick }) {
+function Profile({
+  clothingItems,
+  handleAddClick,
+  handleCardClick,
+  onLogout,
+  onEditProfile,
+  handleCardLike,
+}) {
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -20,11 +27,12 @@ function Profile({ clothingItems, handleAddClick, handleCardClick }) {
         &times;
       </button>
 
-      <SideBar />
+      <SideBar onLogout={onLogout} onEditProfile={onEditProfile} />
       <ClothesSection
         clothingItems={clothingItems}
         onAddClick={handleAddClick}
         onCardClick={handleCardClick}
+        onCardLike={handleCardLike}
       />
     </div>
   );

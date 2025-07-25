@@ -1,0 +1,125 @@
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal__content {
+  background-color: #f8f8f8;
+  border-radius: 16px;
+  padding: 28px 24px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  font-family: "Cabinet-Grotesk", "Helvetica Neue", sans-serif;
+}
+
+.modal__close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #000;
+}
+
+.modal__title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal__input {
+  border: none;
+  border-bottom: 1px solid #000;
+  padding: 12px 0;
+  font-size: 16px;
+  background-color: transparent;
+  color: #000;
+  outline: none;
+}
+
+.modal__input::placeholder {
+  color: #aaa;
+}
+
+.modal__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.modal__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.modal__submit-button {
+  background-color: black;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal__submit-button:disabled {
+  background-color: #ccc;
+  color: #777;
+  cursor: not-allowed;
+}
+
+.modal__alt {
+  font-size: 14px;
+  color: #555;
+  padding-top: 22px;
+}
+
+.modal__alt:hover {
+  text-decoration: underline;
+}
+
+.modal__alt-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #000;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.modal__alt-link:hover,
+.modal__alt-link:focus {
+  color: #000;
+  text-decoration: underline;
+}
+
+.modal__error-message {
+  color: #ff4d00;
+  font-size: 14px;
+  margin: 6px 0 0;
+}

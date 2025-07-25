@@ -1,45 +1,64 @@
-# React + Vite
+# WTWR (What to Wear?)
 
-Project 10 Summary: Responsive Clothing Catalog Web App
-Overview:
-A modern, responsive React web application where users can view, add, and interact with clothing item cards, optimized to match a Figma design spec.
+A weather-based clothing recommendation web app built with the MERN stack (MongoDB, Express.js, React, Node.js). WTWR helps users decide what to wear based on the current weather conditions and lets them upload, like, and manage their own clothing items.
 
-Key Features:
+## Features
 
-Modal System:
+✅ View real-time weather and suggested clothing  
+✅ Register / Sign in / Sign out  
+✅ Secure token-based authentication with JWT  
+✅ Add, like, and delete clothing items  
+✅ Edit user profile (name and avatar)  
+✅ Protected routes for authenticated users  
+✅ Responsive design for mobile and desktop
 
--Custom ModalWithForm and ItemModal components handle form and image interactions.
+---
 
--Close button styled with a transparent background and SVG X icon.
+## Tech Stack
 
-Card Component:
+- **Frontend**: React, CSS, JSX, React Router
+- **Backend**: Express.js, Node.js, MongoDB, Mongoose
+- **Authentication**: JWT (JSON Web Tokens), bcrypt
+- **Weather API**: OpenWeatherMap (for real-time weather data)
+- **Other Tools**: Postman (API testing), localStorage, Git, Vite
 
--Cards include a name centered at the top and hover scaling effects.
+---
 
--Added a visible, styled border and responsive image behavior.
+## API Overview
 
-Weather Integration:
+Auth
+POST /signup – Register new user
 
--Displays a temperature overlay on a weather background card.
+POST /signin – Login
 
--Adjusts layout and font sizes responsively.
+GET /users/me – Get current user
 
-Form Validation:
+PATCH /users/me – Update profile
 
--Inputs for name, image URL, and weather type with required field validation.
+Clothing Items
+GET /items – All clothing items
 
--Styled input focus and error states.
+POST /items – Add a new item
 
-Responsiveness:
+DELETE /items/:id – Delete item
 
--All layout components, including Header, Footer, and Main, are mobile-friendly.
+PUT /items/:id/likes – Like
 
--Flexbox used throughout with media queries for screens <768px and <1100px.
+DELETE /items/:id/likes – Unlike
 
-Styling:
+---
 
--Clean, scalable typography using "Cabinet-Grotesk".
+## Author
 
--Shadow effects and consistent spacing throughout.
+Brett Beare
+Built during the TripleTen Software Engineering Program
 
--Light-gray background, dark text, and minimalistic button designs.
+---
+
+## Frontend se_project_react
+
+Link: https://github.com/bbeare22/se_project_react
+
+## backend se_projectexpress
+
+Link: https://github.com/bbeare22/se_project_express

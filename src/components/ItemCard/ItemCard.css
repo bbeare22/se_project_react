@@ -17,25 +17,17 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.card__name {
+.card__top-row {
   position: absolute;
   top: 15px;
   left: 50%;
   transform: translateX(-50%);
-  margin: 0;
-  font-family: "Cabinet-Grotesk", Arial, sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 12px;
   background-color: rgba(255, 255, 255, 0.85);
   border-radius: 4px;
-  padding: 2px 12px;
-  color: rgba(0, 0, 0, 0.8);
-  user-select: none;
-  pointer-events: none;
-  text-align: center;
-  max-width: 90%;
-  word-wrap: break-word;
 }
 
 .card__image {
@@ -47,10 +39,33 @@
   transition: transform 0.2s ease;
 }
 
-.card__image:hover,
-.card__image:focus {
-  transform: scale(1.05);
-  outline: none;
+.card__name {
+  margin: 0;
+  font-family: "Cabinet-Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+}
+
+.card__like-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.card__like-button:hover {
+  transform: scale(1.1);
+}
+
+.card__like-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
 
 @media screen and (max-width: 600px) {
