@@ -59,6 +59,6 @@ Built during the TripleTen Software Engineering Program
 
 Link: https://github.com/bbeare22/se_project_react
 
-## backend se_projectexpress
+## backend se_project_express
 
 Link: https://github.com/bbeare22/se_project_express
