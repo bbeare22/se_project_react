@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import "../AuthModal/AuthModal.css";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 const RegisterModal = ({
   isOpen,
@@ -8,31 +9,25 @@ const RegisterModal = ({
   error,
   onSwitchToLogin,
 }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    avatar: "",
-    email: "",
-    password: "",
-  });
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormAndValidation();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  useEffect(() => {
+    if (isOpen) {
+      resetForm();
+    }
+  }, [isOpen, resetForm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegister(formData);
+    onRegister({
+      name: values.name,
+      avatar: values.avatar,
+      email: values.email,
+      password: values.password,
+    });
+    resetForm();
   };
-
-  useEffect(() => {
-    if (!isOpen) {
-      setFormData({ name: "", avatar: "", email: "", password: "" });
-    }
-  }, [isOpen]);
-
-  const isFormValid =
-    formData.name && formData.avatar && formData.email && formData.password;
 
   if (!isOpen) return null;
 
@@ -43,43 +38,50 @@ const RegisterModal = ({
           ✕
         </button>
         <h2 className="modal__title">Sign Up</h2>
-        <form className="modal__form" onSubmit={handleSubmit}>
+        <form className="modal__form" onSubmit={handleSubmit} noValidate>
           <input
             className="modal__input"
             type="text"
             name="name"
             placeholder="Name *"
-            value={formData.name}
+            value={values.name || ""}
             onChange={handleChange}
             required
           />
+          <span className="modal__error">{errors.name}</span>
+
           <input
             className="modal__input"
             type="url"
             name="avatar"
             placeholder="Avatar URL *"
-            value={formData.avatar}
+            value={values.avatar || ""}
             onChange={handleChange}
             required
           />
+          <span className="modal__error">{errors.avatar}</span>
+
           <input
             className="modal__input"
             type="email"
             name="email"
             placeholder="Email *"
-            value={formData.email}
+            value={values.email || ""}
             onChange={handleChange}
             required
           />
+          <span className="modal__error">{errors.email}</span>
+
           <input
             className="modal__input"
             type="password"
             name="password"
             placeholder="Password *"
-            value={formData.password}
+            value={values.password || ""}
             onChange={handleChange}
             required
           />
+          <span className="modal__error">{errors.password}</span>
 
           {error && <p className="modal__error-message">{error}</p>}
 
@@ -87,7 +89,7 @@ const RegisterModal = ({
             <button
               className="modal__submit-button"
               type="submit"
-              disabled={!isFormValid}
+              disabled={!isValid}
             >
               Sign Up
             </button>

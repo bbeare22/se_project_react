@@ -1,37 +1,36 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import "./ChangeProfileModal.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 function ChangeProfileModal({ isOpen, onClose, onUpdateProfile }) {
   const currentUser = useContext(CurrentUserContext);
-
-  const [formData, setFormData] = useState({ name: "", avatar: "" });
-  const [error, setError] = useState("");
+  const { values, handleChange, errors, isValid, setValues, resetForm } =
+    useFormAndValidation();
 
   useEffect(() => {
     if (currentUser && isOpen) {
-      setFormData({
+      setValues({
         name: currentUser.name || "",
         avatar: currentUser.avatar || "",
       });
-      setError("");
+      resetForm(
+        {
+          name: currentUser.name || "",
+          avatar: currentUser.avatar || "",
+        },
+        {},
+        true
+      );
     }
-  }, [currentUser, isOpen]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  }, [currentUser, isOpen, setValues, resetForm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!formData.name.trim() || !formData.avatar.trim()) {
-      setError("Both fields are required.");
-      return;
-    }
-
-    onUpdateProfile(formData);
+    onUpdateProfile({
+      name: values.name,
+      avatar: values.avatar,
+    });
   };
 
   if (!isOpen) return null;
@@ -44,7 +43,7 @@ function ChangeProfileModal({ isOpen, onClose, onUpdateProfile }) {
         </button>
         <h2 className="modal__title">Change profile data</h2>
 
-        <form className="modal__form" onSubmit={handleSubmit}>
+        <form className="modal__form" onSubmit={handleSubmit} noValidate>
           <label className="modal__label">
             Name *
             <input
@@ -52,10 +51,11 @@ function ChangeProfileModal({ isOpen, onClose, onUpdateProfile }) {
               type="text"
               name="name"
               placeholder="Name"
-              value={formData.name}
+              value={values.name || ""}
               onChange={handleChange}
               required
             />
+            <span className="modal__error">{errors.name}</span>
           </label>
 
           <label className="modal__label">
@@ -64,19 +64,18 @@ function ChangeProfileModal({ isOpen, onClose, onUpdateProfile }) {
               className="modal__input"
               type="url"
               name="avatar"
-              placeholder="Avatar"
-              value={formData.avatar}
+              placeholder="Avatar URL"
+              value={values.avatar || ""}
               onChange={handleChange}
               required
             />
+            <span className="modal__error">{errors.avatar}</span>
           </label>
-
-          {error && <p className="modal__error-message">{error}</p>}
 
           <button
             className="modal__submit-button"
             type="submit"
-            disabled={!formData.name || !formData.avatar}
+            disabled={!isValid}
           >
             Save changes
           </button>

@@ -230,6 +230,34 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    if (
+      !activeModal &&
+      !isRegisterModalOpen &&
+      !isLoginModalOpen &&
+      !isChangeProfileModalOpen
+    ) {
+      return;
+    }
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeAllModals();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [
+    activeModal,
+    isRegisterModalOpen,
+    isLoginModalOpen,
+    isChangeProfileModalOpen,
+  ]);
+
   return (
     <BrowserRouter>
       <CurrentUserContext.Provider value={currentUser}>

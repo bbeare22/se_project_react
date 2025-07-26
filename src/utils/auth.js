@@ -1,3 +1,5 @@
+import { checkResponse } from "./checkResponse";
+
 const BASE_URL = "http://localhost:3001";
 
 export const signup = ({ name, avatar, email, password }) => {
@@ -7,9 +9,7 @@ export const signup = ({ name, avatar, email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then((res) =>
-    res.ok ? res.json() : res.json().then((err) => Promise.reject(err))
-  );
+  }).then(checkResponse);
 };
 
 export const signin = ({ email, password }) => {
@@ -19,9 +19,7 @@ export const signin = ({ email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then((res) =>
-    res.ok ? res.json() : res.json().then((err) => Promise.reject(err))
-  );
+  }).then(checkResponse);
 };
 
 export const checkToken = (token) => {
@@ -31,9 +29,7 @@ export const checkToken = (token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then((res) =>
-    res.ok ? res.json() : res.json().then((err) => Promise.reject(err))
-  );
+  }).then(checkResponse);
 };
 
 export const updateProfile = ({ name, avatar }, token) => {
@@ -44,7 +40,5 @@ export const updateProfile = ({ name, avatar }, token) => {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, avatar }),
-  }).then((res) =>
-    res.ok ? res.json() : res.json().then((err) => Promise.reject(err))
-  );
+  }).then(checkResponse);
 };

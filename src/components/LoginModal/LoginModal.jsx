@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import "../AuthModal/AuthModal.css";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 const LoginModal = ({
   isOpen,
@@ -8,19 +9,22 @@ const LoginModal = ({
   error,
   onSwitchToRegister,
 }) => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormAndValidation();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  useEffect(() => {
+    if (isOpen) {
+      resetForm();
+    }
+  }, [isOpen, resetForm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin(formData);
+    onLogin({
+      email: values.email,
+      password: values.password,
+    });
+    resetForm();
   };
 
   if (!isOpen) return null;
@@ -32,25 +36,28 @@ const LoginModal = ({
           ✕
         </button>
         <h2 className="modal__title">Log In</h2>
-        <form className="modal__form" onSubmit={handleSubmit}>
+        <form className="modal__form" onSubmit={handleSubmit} noValidate>
           <input
             className="modal__input"
             type="email"
             name="email"
             placeholder="Email *"
-            value={formData.email}
+            value={values.email || ""}
             onChange={handleChange}
             required
           />
+          <span className="modal__error">{errors.email}</span>
+
           <input
             className="modal__input"
             type="password"
             name="password"
             placeholder="Password *"
-            value={formData.password}
+            value={values.password || ""}
             onChange={handleChange}
             required
           />
+          <span className="modal__error">{errors.password}</span>
 
           {error && <p className="modal__error-message">{error}</p>}
 
@@ -58,7 +65,7 @@ const LoginModal = ({
             <button
               className="modal__submit-button"
               type="submit"
-              disabled={!formData.email || !formData.password}
+              disabled={!isValid}
             >
               Log In
             </button>
