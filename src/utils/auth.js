@@ -1,6 +1,9 @@
 import { checkResponse } from "./checkResponse";
 
-const BASE_URL = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.weatherapp.jumpingcrab.com"
+    : "http://localhost:3001";
 
 export const signup = ({ name, avatar, email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
