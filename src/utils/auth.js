@@ -1,6 +1,6 @@
 import { checkResponse } from "./checkResponse";
 
-const baseUrl =
+const BASE_URL =
   process.env.NODE_ENV === "production"
     ? "https://api.weatherapp.jumpingcrab.com"
     : "http://localhost:3001";
