@@ -1,16 +1,13 @@
 import { checkResponse } from "./checkResponse";
 
-const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://api.weatherapp.jumpingcrab.com"
-    : "http://localhost:3001";
+const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:3001";
 
 export const fetchClothingItems = () => {
-  return fetch(`${baseUrl}/items`).then(checkResponse);
+  return fetch(`${BASE_URL}/items`).then(checkResponse);
 };
 
 export const addClothingItem = ({ name, link, weather }, token) => {
-  return fetch(`${baseUrl}/items`, {
+  return fetch(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +18,7 @@ export const addClothingItem = ({ name, link, weather }, token) => {
 };
 
 export const deleteClothingItem = (id, token) => {
-  return fetch(`${baseUrl}/items/${id}`, {
+  return fetch(`${BASE_URL}/items/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -30,7 +27,7 @@ export const deleteClothingItem = (id, token) => {
 };
 
 export const addCardLike = (id, token) => {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+  return fetch(`${BASE_URL}/items/${id}/likes`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -39,7 +36,7 @@ export const addCardLike = (id, token) => {
 };
 
 export const removeCardLike = (id, token) => {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+  return fetch(`${BASE_URL}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
